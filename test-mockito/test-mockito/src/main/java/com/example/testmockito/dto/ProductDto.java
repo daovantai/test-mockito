@@ -17,4 +17,9 @@ public class ProductDto {
         this.price = price;
     }
 
+    public ProductDto(Long id, String nameproduct, int price) {
+        this.id = id;
+        this.nameproduct = nameproduct;
+        this.price = price;
+    }
 }
