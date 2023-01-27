@@ -1,5 +1,6 @@
 package com.example.testmockito.controller;
 
+import com.example.testmockito.dto.ProductDto;
 import com.example.testmockito.model.Product;
 import com.example.testmockito.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +32,13 @@ public class ProductController {
         }
     }
     @PostMapping("/products")
-    public void addProduct(@RequestBody Product product){
-        productService.save(product);
+    public void addProduct(@RequestBody ProductDto productDto){
+        productService.save(productDto);
     }
     @PutMapping("/products/{id}")
-    public ResponseEntity<?> updateProduct(@RequestBody Product product,@PathVariable Long id){
+    public ResponseEntity<?> updateProduct(@RequestBody ProductDto productDto,@PathVariable Long id){
         try {
-            Product existProduct= productService.getProductById(id);
-            productService.save(product);
+            productService.updateProduct(productDto,id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (NoSuchElementException e){
